@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Analysis Result</title>
+</head>
+<body>
+    <h1>Mood Analysis Result</h1>
+    <p><strong>Date:</strong> {{ mood_data.date }}</p>
+    <p><strong>Mood:</strong> {{ mood_data.mood }}</p>
+    <p><strong>Confidence:</strong> {{ mood_data.confidence }}%</p>
+
+    <h2>All Emotions:</h2>
+    <ul>
+        {% for emotion, score in mood_data.all_emotions.items() %}
+            <li>{{ emotion }}: {{ score }}%</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/">Upload another image</a>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="uploadText" method="post" data-aos="fade">
+        <input type="text" name="text" id="text" required>
+        <br><br>
+        <button type="submit" id="submit">Submit</button>
+    </form>
+
+    <div id="result" class="result"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            document.getElementById("uploadText").addEventListener("submit", async function(event){
+                event.preventDefault();
+    
+                const textInput = document.getElementById("text").value;
+    
+                try {
+                    $.post("/getMoodText2", { text: textInput }, function(jsonResponse){
+                        // jsonResponse is already a JavaScript object, no need to parse it
+                        displayResult(jsonResponse);
+                    });
+                } catch {
+                    console.error("error");
+                }
+            });
+        });
+        
+        function displayResult(moodData) {
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = `
+                <h2>Mood Analysis Result</h2>
+                <p><strong>Label:</strong> ${moodData.mood_analysis[0].label}</p>
+            `;
+        }
+    </script>
+    
+</body>
+</html>

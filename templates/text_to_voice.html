@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <button onclick="startRecording()">Start Recording</button>
+  <p id="output">Your text will appear here...</p>
+
+  <script>
+    function startRecording() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'th-TH';
+
+      recognition.onresult = function(event) {
+        document.getElementById("output").innerText = event.results[0][0].transcript;
+      };
+
+      recognition.start();
+    }
+  </script>
+</body>
+</html>

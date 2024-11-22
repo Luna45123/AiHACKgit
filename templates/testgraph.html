@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <canvas id="myChart" width="400" height="400"></canvas>
+  <canvas id="myPieChart" width="500" height="500"></canvas>
+  <canvas id="myLineChart" width="500" height="500"></canvas>
+
+  <script>
+    // Select the canvas element
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    // Create the chart
+    const myChart = new Chart(ctx, {
+      type: 'bar', // Type of chart (e.g., 'bar', 'line', 'pie')
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], // X-axis labels
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3], // Y-axis data
+          backgroundColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    const ctx2 = document.getElementById('myPieChart').getContext('2d');
+
+    const myPieChart = new Chart(ctx2, {
+      type: 'pie',  // Set the chart type to 'pie'
+      data: {
+        labels: ['ผ่อนคลาย', 'มีความสุข', 'ภูมิใจ'], // Labels for each slice
+        datasets: [{
+          label: 'Vote Distribution',  // A label for the dataset
+          data: [9,5,11],     // Data values (one per slice)
+          backgroundColor: [           // Background color for each slice
+            'rgb(246, 141, 43)',
+            'rgb(52, 75, 253)',
+            'rgb(255, 210, 0)',
+          ],
+          borderColor: [               // Border color for each slice
+            'rgb(246, 141, 43)',
+            'rgb(52, 75, 253)',
+            'rgb(255, 210, 0)',
+          ],
+          borderWidth: 1               // Border width for each slice
+        }]
+      },
+      options: {
+        responsive: true,             // Makes the chart responsive
+        plugins: {
+          legend: {                   // Configure the legend
+            position: 'top',          // Position of the legend (top, left, right, bottom)
+          },
+          tooltip: {                  // Configure tooltips for the chart
+            enabled: true             // Display tooltips on hover
+          }
+        }
+      }
+    });
+    const ctx3 = document.getElementById('myLineChart').getContext('2d');
+    const myLineChart = new Chart(ctx3, {
+      type: 'line',  // Set the chart type to 'line'
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],  // X-axis labels
+        datasets: [{
+          label: 'Sales Data',                // Label for the dataset
+          data: [65, 59, 80, 81, 56, 55, 40], // Y-axis data points
+          backgroundColor: 'rgba(75, 192, 192, 0)',  // Fill color under the line
+          borderColor: 'rgba(75, 192, 192, 1)',        // Line color
+          borderWidth: 2,                     // Width of the line
+          fill: true                          // Fill the area under the line
+        }, {
+          label: 'Product B Sales',           // Label for the second line
+          data: [28, 48, 40, 19, 86, 27, 90], // Data points for the second line
+          backgroundColor: 'rgba(153, 102, 255, 0)',  // Fill color under the second line
+          borderColor: 'rgba(153, 102, 255, 1)',        // Color of the second line
+          borderWidth: 2,                     // Width of the second line
+          fill: true                          // Fill the area under the second line
+        },{
+          label: 'Product C Sales',           // Label for the second line
+          data: [50, 25, 15, 45, 40, 30, 4], // Data points for the second line
+          backgroundColor: 'rgba(153, 102, 255, 0)',  // Fill color under the second line
+          borderColor: 'rgba(255, 140, 165, 1)',        // Color of the second line
+          borderWidth: 2,                     // Width of the second line
+          fill: true       
+        }
+      ]
+      },
+      options: {
+        responsive: true,                     // Make the chart responsive
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Months'                  // Label for the X-axis
+            }
+          },
+          y: {
+            beginAtZero: true,                // Start Y-axis at 0
+            title: {
+              display: true,
+              text: 'data'               // Label for the Y-axis
+            }
+          }
+        },
+        plugins: {
+          legend: { position: 'top' },        // Position of the legend
+          tooltip: { enabled: true }          // Display tooltips on hover
+        }
+      }
+    });
+  </script>
+
+  <style>
+    #myChart {
+      max-width: 500px;
+      max-height: 500px;
+      width: 100%;
+      height: auto;
+      margin: 100px 0 100px 0;
+    }
+
+    #myPieChart {
+      max-width: 500px;
+      max-height: 500px;
+      width: 100%;
+      height: auto;
+      margin: 100px 0 100px 0;
+    }
+    #myLineChart {
+      max-width: 500px;
+      max-height: 500px;
+      width: 100%;
+      height: auto;
+      margin: 100px 0 100px 0;
+    }
+  </style>
+
+</body>
+
+</html>
